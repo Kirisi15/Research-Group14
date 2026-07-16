@@ -19,7 +19,7 @@ Path("data/failed").mkdir(parents=True, exist_ok=True)
 def run_pipeline():
  cfg=json.load(open('config/config.json'))
  conn=get_connection(cfg['database'])
- qs=pd.read_csv('data/input/Batch17.csv')
+ qs=pd.read_csv('data/input/Batch01.csv')
  out='data/output/final_dataset.csv'
  machine=socket.gethostname()
 
