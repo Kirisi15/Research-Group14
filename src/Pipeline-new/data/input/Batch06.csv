@@ -1,0 +1,101 @@
+query_id,template_id,sql_text
+Q45_V003,Q_0500,"SELECT p_container, COUNT(*) AS cnt FROM part GROUP BY p_container ORDER BY p_container;"
+Q45_V004,Q_0501,"SELECT p_container, COUNT(*) AS cnt FROM part WHERE p_container LIKE '%BOX%' GROUP BY p_container ORDER BY cnt DESC;"
+Q45_V005,Q_0502,"SELECT p_container, COUNT(*) AS cnt FROM part GROUP BY p_container HAVING COUNT(*) > 100 ORDER BY cnt DESC;"
+Q45_V006,Q_0503,"SELECT p_container, COUNT(*) AS cnt FROM part GROUP BY p_container ORDER BY cnt DESC LIMIT 10;"
+Q45_V007,Q_0504,"SELECT p_container, COUNT(*) AS cnt, AVG(p_retailprice) AS avg_price FROM part GROUP BY p_container ORDER BY cnt DESC;"
+Q45_V008,Q_0505,"SELECT p_container, COUNT(*) AS cnt FROM part WHERE p_size > 5 GROUP BY p_container ORDER BY cnt DESC;"
+Q45_V009,Q_0506,"SELECT p_container, COUNT(DISTINCT p_brand) AS brand_count FROM part GROUP BY p_container ORDER BY brand_count DESC;"
+Q45_V010,Q_0507,"SELECT p_container, COUNT(*) AS cnt FROM part WHERE p_retailprice > 500 GROUP BY p_container ORDER BY cnt DESC;"
+Q45_V011,Q_0508,"SELECT p_container, MIN(p_retailprice) AS min_price, MAX(p_retailprice) AS max_price, COUNT(*) AS cnt FROM part GROUP BY p_container ORDER BY cnt DESC;"
+Q46_V001,Q_0509,"SELECT s_suppkey, s_name, s_acctbal FROM supplier WHERE s_acctbal > 9000;"
+Q46_V002,Q_0510,"SELECT s_suppkey, s_name, s_acctbal FROM supplier WHERE s_acctbal > 8000;"
+Q46_V003,Q_0511,"SELECT s_suppkey, s_name, s_acctbal FROM supplier WHERE s_acctbal > 9500;"
+Q46_V004,Q_0512,"SELECT s_suppkey, s_name, s_acctbal FROM supplier WHERE s_acctbal BETWEEN 5000 AND 9000;"
+Q46_V005,Q_0513,"SELECT s_suppkey, s_name, s_acctbal FROM supplier WHERE s_acctbal > 9000 ORDER BY s_acctbal DESC;"
+Q46_V006,Q_0514,"SELECT s_suppkey, s_name, s_acctbal, s_nationkey FROM supplier WHERE s_acctbal > 9000;"
+Q46_V007,Q_0515,"SELECT s_suppkey, s_name, s_acctbal FROM supplier WHERE s_acctbal > 9000 AND s_nationkey = 5;"
+Q46_V008,Q_0516,"SELECT s_suppkey, s_name, s_acctbal FROM supplier WHERE s_acctbal < 0;"
+Q46_V009,Q_0517,SELECT COUNT(*) AS high_balance_count FROM supplier WHERE s_acctbal > 9000;
+Q46_V010,Q_0518,"SELECT s_suppkey, s_name, s_acctbal FROM supplier WHERE s_acctbal > 9000 LIMIT 50;"
+Q46_V011,Q_0519,"SELECT s_suppkey, s_name, s_acctbal FROM supplier WHERE s_acctbal > (SELECT AVG(s_acctbal) FROM supplier);"
+Q47_V001,Q_0520,SELECT SUM(l_extendedprice) AS total_revenue FROM lineitem;
+Q47_V002,Q_0521,SELECT SUM(l_extendedprice) AS total_revenue FROM lineitem WHERE l_shipdate >= DATE '1996-01-01';
+Q47_V003,Q_0522,SELECT SUM(l_extendedprice * (1 - l_discount)) AS total_revenue FROM lineitem;
+Q47_V004,Q_0523,SELECT SUM(l_extendedprice) AS total_revenue FROM lineitem WHERE l_returnflag = 'R';
+Q47_V005,Q_0524,"SELECT SUM(l_extendedprice) AS total_revenue, COUNT(*) AS line_count FROM lineitem;"
+Q47_V006,Q_0525,SELECT SUM(l_extendedprice) AS total_revenue FROM lineitem WHERE l_linestatus = 'O';
+Q47_V007,Q_0526,SELECT SUM(l_extendedprice) AS total_revenue FROM lineitem WHERE l_discount > 0.05;
+Q47_V008,Q_0527,SELECT AVG(l_extendedprice) AS avg_revenue FROM lineitem;
+Q47_V009,Q_0528,SELECT SUM(l_extendedprice) AS total_revenue FROM lineitem WHERE l_shipdate BETWEEN DATE '1995-01-01' AND DATE '1995-12-31';
+Q47_V010,Q_0529,SELECT SUM(l_extendedprice) AS total_revenue FROM lineitem WHERE l_quantity > 30;
+Q47_V011,Q_0530,SELECT SUM(l_extendedprice) AS total_revenue FROM lineitem WHERE l_shipmode = 'MAIL';
+Q48_V001,Q_0531,"SELECT EXTRACT(YEAR FROM o_orderdate) AS order_year, COUNT(*) AS order_count FROM orders GROUP BY order_year ORDER BY order_year;"
+Q48_V002,Q_0532,"SELECT EXTRACT(YEAR FROM o_orderdate) AS order_year, COUNT(*) AS order_count FROM orders GROUP BY order_year ORDER BY order_count DESC;"
+Q48_V003,Q_0533,"SELECT EXTRACT(YEAR FROM o_orderdate) AS order_year, SUM(o_totalprice) AS total_revenue FROM orders GROUP BY order_year ORDER BY order_year;"
+Q48_V004,Q_0534,"SELECT EXTRACT(YEAR FROM o_orderdate) AS order_year, COUNT(*) AS order_count FROM orders WHERE o_orderstatus = 'F' GROUP BY order_year ORDER BY order_year;"
+Q48_V005,Q_0535,"SELECT EXTRACT(YEAR FROM o_orderdate) AS order_year, AVG(o_totalprice) AS avg_order FROM orders GROUP BY order_year ORDER BY order_year;"
+Q48_V006,Q_0536,"SELECT EXTRACT(YEAR FROM o_orderdate) AS order_year, COUNT(*) AS order_count FROM orders WHERE o_orderdate >= DATE '1993-01-01' GROUP BY order_year ORDER BY order_year;"
+Q48_V007,Q_0537,"SELECT EXTRACT(YEAR FROM o_orderdate) AS order_year, COUNT(DISTINCT o_custkey) AS unique_customers FROM orders GROUP BY order_year ORDER BY order_year;"
+Q48_V008,Q_0538,"SELECT EXTRACT(YEAR FROM o_orderdate) AS order_year, MAX(o_totalprice) AS max_order FROM orders GROUP BY order_year ORDER BY order_year;"
+Q48_V009,Q_0539,"SELECT EXTRACT(YEAR FROM o_orderdate) AS order_year, COUNT(*) AS order_count FROM orders GROUP BY order_year HAVING COUNT(*) > 100000 ORDER BY order_year;"
+Q48_V010,Q_0540,"SELECT EXTRACT(YEAR FROM o_orderdate) AS order_year, SUM(o_totalprice) AS total_revenue, COUNT(*) AS order_count FROM orders GROUP BY order_year ORDER BY total_revenue DESC;"
+Q48_V011,Q_0541,"SELECT EXTRACT(YEAR FROM o_orderdate) AS order_year, MIN(o_totalprice) AS min_order, MAX(o_totalprice) AS max_order FROM orders GROUP BY order_year ORDER BY order_year;"
+Q49_V001,Q_0542,"SELECT p_partkey, p_name FROM part WHERE p_name LIKE '%green%';"
+Q49_V002,Q_0543,"SELECT p_partkey, p_name FROM part WHERE p_name LIKE '%blue%';"
+Q49_V003,Q_0544,"SELECT p_partkey, p_name FROM part WHERE p_name LIKE '%red%';"
+Q49_V004,Q_0545,"SELECT p_partkey, p_name, p_retailprice FROM part WHERE p_name LIKE '%green%';"
+Q49_V005,Q_0546,"SELECT p_partkey, p_name FROM part WHERE p_name LIKE 'green%';"
+Q49_V006,Q_0547,"SELECT p_partkey, p_name FROM part WHERE p_name LIKE '%green%' ORDER BY p_name;"
+Q49_V007,Q_0548,"SELECT p_partkey, p_name FROM part WHERE p_name LIKE '%green%' AND p_size > 10;"
+Q49_V008,Q_0549,"SELECT p_partkey, p_name FROM part WHERE p_name LIKE '%yellow%';"
+Q49_V009,Q_0550,SELECT COUNT(*) AS green_part_count FROM part WHERE p_name LIKE '%green%';
+Q49_V010,Q_0551,"SELECT p_partkey, p_name, p_brand FROM part WHERE p_name LIKE '%green%' ORDER BY p_brand;"
+Q49_V011,Q_0552,"SELECT p_partkey, p_name FROM part WHERE p_name LIKE '%green%' AND p_retailprice < 1000;"
+Q50_V001,Q_0553,SELECT DISTINCT c_mktsegment FROM customer;
+Q50_V002,Q_0554,"SELECT DISTINCT c_mktsegment, COUNT(*) OVER (PARTITION BY c_mktsegment) AS seg_count FROM customer;"
+Q50_V003,Q_0555,"SELECT c_mktsegment, COUNT(*) AS customer_count FROM customer GROUP BY c_mktsegment ORDER BY customer_count DESC;"
+Q50_V004,Q_0556,SELECT DISTINCT c_mktsegment FROM customer ORDER BY c_mktsegment;
+Q50_V005,Q_0557,SELECT DISTINCT c_nationkey FROM customer;
+Q50_V006,Q_0558,SELECT DISTINCT c_mktsegment FROM customer WHERE c_acctbal > 0;
+Q50_V007,Q_0559,SELECT DISTINCT c_mktsegment FROM customer WHERE c_nationkey < 10;
+Q50_V008,Q_0560,"SELECT c_mktsegment, AVG(c_acctbal) AS avg_balance FROM customer GROUP BY c_mktsegment;"
+Q50_V009,Q_0561,SELECT DISTINCT c_mktsegment FROM customer ORDER BY c_mktsegment DESC;
+Q50_V010,Q_0562,SELECT DISTINCT c_mktsegment FROM customer WHERE c_acctbal > 5000;
+Q50_V011,Q_0563,"SELECT c_mktsegment, MIN(c_acctbal) AS min_bal, MAX(c_acctbal) AS max_bal FROM customer GROUP BY c_mktsegment;"
+Q51_V001,Q_0564,"SELECT p_size, AVG(p_retailprice) AS avg_price FROM part GROUP BY p_size ORDER BY p_size;"
+Q51_V002,Q_0565,"SELECT p_size, AVG(p_retailprice) AS avg_price FROM part GROUP BY p_size ORDER BY avg_price DESC;"
+Q51_V003,Q_0566,"SELECT p_size, AVG(p_retailprice) AS avg_price FROM part WHERE p_size > 10 GROUP BY p_size ORDER BY p_size;"
+Q51_V004,Q_0567,"SELECT p_size, COUNT(*) AS part_count, AVG(p_retailprice) AS avg_price FROM part GROUP BY p_size ORDER BY p_size;"
+Q51_V005,Q_0568,"SELECT p_size, MIN(p_retailprice) AS min_price, MAX(p_retailprice) AS max_price FROM part GROUP BY p_size ORDER BY p_size;"
+Q51_V006,Q_0569,"SELECT p_size, AVG(p_retailprice) AS avg_price FROM part GROUP BY p_size HAVING AVG(p_retailprice) > 1000 ORDER BY p_size;"
+Q51_V007,Q_0570,"SELECT p_size, SUM(p_retailprice) AS total_price FROM part GROUP BY p_size ORDER BY p_size;"
+Q51_V008,Q_0571,"SELECT p_size, AVG(p_retailprice) AS avg_price FROM part GROUP BY p_size ORDER BY p_size DESC;"
+Q51_V009,Q_0572,"SELECT p_size, AVG(p_retailprice) AS avg_price FROM part WHERE p_brand = 'Brand#13' GROUP BY p_size ORDER BY p_size;"
+Q51_V010,Q_0573,"SELECT p_size, COUNT(DISTINCT p_brand) AS brands, AVG(p_retailprice) AS avg_price FROM part GROUP BY p_size ORDER BY p_size;"
+Q51_V011,Q_0574,"SELECT p_size, AVG(p_retailprice) AS avg_price FROM part WHERE p_retailprice > 500 GROUP BY p_size ORDER BY p_size;"
+Q52_V001,Q_0575,"SELECT ps_suppkey, COUNT(*) AS part_count FROM partsupp GROUP BY ps_suppkey ORDER BY part_count DESC;"
+Q52_V002,Q_0576,"SELECT ps_suppkey, COUNT(*) AS part_count FROM partsupp GROUP BY ps_suppkey ORDER BY part_count ASC;"
+Q52_V003,Q_0577,"SELECT ps_suppkey, COUNT(*) AS part_count FROM partsupp GROUP BY ps_suppkey HAVING COUNT(*) > 50 ORDER BY part_count DESC;"
+Q52_V004,Q_0578,"SELECT ps_suppkey, COUNT(*) AS part_count, SUM(ps_availqty) AS total_qty FROM partsupp GROUP BY ps_suppkey ORDER BY part_count DESC;"
+Q52_V005,Q_0579,"SELECT ps_suppkey, COUNT(*) AS part_count FROM partsupp GROUP BY ps_suppkey ORDER BY part_count DESC LIMIT 20;"
+Q52_V006,Q_0580,"SELECT ps_suppkey, AVG(ps_supplycost) AS avg_cost, COUNT(*) AS part_count FROM partsupp GROUP BY ps_suppkey ORDER BY avg_cost DESC;"
+Q52_V007,Q_0581,"SELECT ps_suppkey, COUNT(*) AS part_count FROM partsupp WHERE ps_availqty > 1000 GROUP BY ps_suppkey ORDER BY part_count DESC;"
+Q52_V008,Q_0582,"SELECT ps_partkey, COUNT(*) AS supplier_count FROM partsupp GROUP BY ps_partkey ORDER BY supplier_count DESC;"
+Q52_V009,Q_0583,"SELECT ps_suppkey, SUM(ps_supplycost * ps_availqty) AS supply_value FROM partsupp GROUP BY ps_suppkey ORDER BY supply_value DESC;"
+Q52_V010,Q_0584,"SELECT ps_suppkey, COUNT(*) AS part_count FROM partsupp WHERE ps_supplycost < 100 GROUP BY ps_suppkey ORDER BY part_count DESC;"
+Q52_V011,Q_0585,"SELECT ps_suppkey, MAX(ps_availqty) AS max_qty, COUNT(*) AS part_count FROM partsupp GROUP BY ps_suppkey ORDER BY max_qty DESC;"
+Q53_V001,Q_0586,"SELECT o_orderkey, o_custkey, o_totalprice FROM orders WHERE o_totalprice > 200000;"
+Q53_V002,Q_0587,"SELECT o_orderkey, o_custkey, o_totalprice FROM orders WHERE o_totalprice > 300000;"
+Q53_V003,Q_0588,"SELECT o_orderkey, o_custkey, o_totalprice FROM orders WHERE o_totalprice > 150000;"
+Q53_V004,Q_0589,"SELECT o_orderkey, o_custkey, o_totalprice FROM orders WHERE o_totalprice BETWEEN 200000 AND 300000;"
+Q53_V005,Q_0590,"SELECT o_orderkey, o_custkey, o_totalprice FROM orders WHERE o_totalprice > 200000 ORDER BY o_totalprice DESC;"
+Q53_V006,Q_0591,"SELECT o_orderkey, o_custkey, o_totalprice, o_orderdate FROM orders WHERE o_totalprice > 200000;"
+Q53_V007,Q_0592,"SELECT o_orderkey, o_custkey, o_totalprice FROM orders WHERE o_totalprice > 200000 AND o_orderstatus = 'F';"
+Q53_V008,Q_0593,SELECT COUNT(*) AS large_order_count FROM orders WHERE o_totalprice > 200000;
+Q53_V009,Q_0594,"SELECT o_orderkey, o_custkey, o_totalprice FROM orders WHERE o_totalprice > 200000 LIMIT 100;"
+Q53_V010,Q_0595,"SELECT o_orderkey, o_custkey, o_totalprice FROM orders WHERE o_totalprice > 200000 AND o_orderdate >= DATE '1995-01-01';"
+Q53_V011,Q_0596,"SELECT o_custkey, COUNT(*) AS large_orders, SUM(o_totalprice) AS total FROM orders WHERE o_totalprice > 200000 GROUP BY o_custkey ORDER BY total DESC;"
+Q54_V001,Q_0597,"SELECT l_orderkey, l_linenumber, l_tax FROM lineitem WHERE l_tax = 0.08;"
+Q54_V002,Q_0598,"SELECT l_orderkey, l_linenumber, l_tax FROM lineitem WHERE l_tax = 0.04;"
+Q54_V003,Q_0599,"SELECT l_orderkey, l_linenumber, l_tax FROM lineitem WHERE l_tax = 0.02;"
