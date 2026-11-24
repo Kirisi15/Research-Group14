@@ -1,4 +1,0 @@
-feature_1,feature_2,correlation,absolute_correlation
-seq_scan_count,hash_join_count,0.8907086165255689,0.8907086165255689
-query_length,total_nodes,0.8667691220481296,0.8667691220481296
-disk_read_bytes,disk_write_bytes,0.8545279407846857,0.8545279407846857

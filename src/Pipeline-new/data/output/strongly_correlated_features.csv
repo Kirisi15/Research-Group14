@@ -1,7 +1,0 @@
-feature_1,feature_2,correlation
-disk_read_bytes,disk_write_bytes,0.9858559611489834
-seq_scan_count,hash_join_count,0.9140891785519064
-index_scan_count,nested_loop_count,0.8957844389270835
-hash_join_count,total_nodes,0.862947052128187
-seq_scan_count,total_nodes,0.8479081580439617
-join_count,table_count,0.8430609356331613
