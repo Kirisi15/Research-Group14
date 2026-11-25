@@ -23,7 +23,7 @@ import psycopg2
 # CONFIGURATION
 # ============================================================
 
-SCALE_FACTOR = 10  # SF-10 = ~10GB database, ~60M lineitem rows
+SCALE_FACTOR = 3  # SF-10 = ~10GB database, ~60M lineitem rows
 
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 
